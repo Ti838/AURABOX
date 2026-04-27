@@ -5,7 +5,7 @@
   **The Fully Local, Intelligent AI Agent & Model**
 
   [![Local Inference](https://img.shields.io/badge/Inference-Local%20(Ollama)-blue.svg?style=for-the-badge&logo=ollama)](https://ollama.com/)
-  [![Custom Model](https://img.shields.io/badge/Model-ti838%2Faurabox-orange.svg?style=for-the-badge)](#)
+  [![Custom Model](https://img.shields.io/badge/Model-aurabox-orange.svg?style=for-the-badge)](#)
   [![Sandboxed Execution](https://img.shields.io/badge/Code%20Execution-Sandboxed-brightgreen.svg?style=for-the-badge)](#)
 </div>
 
@@ -26,7 +26,7 @@ You don't need to install any code to talk to AuraBox! You can download the cust
 **1. Install Ollama:** Get it from [ollama.com](https://ollama.com/)
 **2. Run AuraBox globally:**
 ```bash
-ollama run ti838/aurabox
+ollama run aurabox
 ```
 *(This will download the custom AuraBox AI onto your computer. You can chat with it offline forever!)*
 
@@ -43,7 +43,7 @@ If you want the full premium web interface with **Agentic Code Execution**, foll
 ### 1. Download the Custom Model
 Pull the AuraBox model into your local Ollama registry:
 ```bash
-ollama pull ti838/aurabox
+ollama pull aurabox
 ```
 
 ### 2. Setup the Repository
@@ -62,7 +62,7 @@ cp backend/.env.example backend/.env
 Inside `backend/.env`, ensure the model name is correct:
 ```env
 OLLAMA_URL=http://localhost:11434
-MODEL_NAME=ti838/aurabox
+MODEL_NAME=aurabox
 PORT=5000
 ```
 
