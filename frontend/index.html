@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AuraBox | Local Agent</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="stylesheet" href="style.css">
+    <!-- Marked.js for Markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand-icon">
+                    <img src="logo.png" alt="AuraBox Logo" style="width:100%; height:100%; object-fit:cover; border-radius:8px;">
+                </div>
+                <div class="brand-title">AuraBox</div>
+            </div>
+            
+            <button class="new-chat-btn" id="newChatBtn">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                New Session
+            </button>
+
+            <div class="status-indicator">
+                <div class="status-dot"></div>
+                Local Inference Active
+            </div>
+        </aside>
+
+        <!-- Main Chat Area -->
+        <main class="chat-container">
+            <header class="chat-header">
+                <h2>Secure Isolated Environment</h2>
+                <div class="model-badge" id="modelBadge">Loading...</div>
+            </header>
+
+            <div class="messages-area" id="messagesArea">
+                <!-- Welcome Message -->
+                <div class="message bot">
+                    <div class="avatar">
+                        <img src="logo.png" alt="AuraBox" style="width:100%; height:100%; object-fit:cover; border-radius:10px;">
+                    </div>
+                    <div class="message-content">
+                        <p>Welcome to <strong>AuraBox</strong>. I am your fully local, sandboxed AI assistant running on your hardware.</p>
+                        <p>My responses are generated locally, ensuring your data never leaves your machine. How can I assist you today?</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-area">
+                <div class="input-wrapper">
+                    <textarea id="userInput" placeholder="Message AuraBox..." rows="1" autofocus></textarea>
+                    <button class="send-btn" id="sendBtn" disabled>
+                        <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
