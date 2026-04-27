@@ -340,3 +340,28 @@ textarea::placeholder {
     height: 18px;
     fill: currentColor;
 }
+
+.stop-btn {
+    background: #ef4444;
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 4px;
+    margin-right: 8px;
+    transition: all 0.3s ease;
+}
+
+.stop-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.5);
+}
+
+.stop-btn svg {
+    fill: currentColor;
+}

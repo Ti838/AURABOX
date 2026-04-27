@@ -21,7 +21,7 @@ app.post('/api/chat', async (req, res) => {
         // System prompt to give it that "Sandbox AI" personality
         const systemMessage = {
             role: "system",
-            content: "You are AuraBox, a highly capable, local, and secure AI assistant. You operate in a sandboxed environment. Your responses should be concise, helpful, and formatted using markdown. If you need to perform an action, you can write JavaScript code within a markdown block labeled ```javascript execute\n// code\n```. You are running on local hardware."
+            content: "You are AuraBox, a helpful local AI assistant. Answer the user's questions accurately and provide code in the exact language they request (like C++, Python, etc.). ONLY use a ```javascript execute ... ``` block if you specifically need to run a script in the local Node.js sandbox to solve a problem. Otherwise, just converse normally."
         };
 
         const payload = {

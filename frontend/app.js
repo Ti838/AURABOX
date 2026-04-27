@@ -1,10 +1,18 @@
 const messagesArea = document.getElementById('messagesArea');
 const userInput = document.getElementById('userInput');
 const sendBtn = document.getElementById('sendBtn');
+const stopBtn = document.getElementById('stopBtn');
 const newChatBtn = document.getElementById('newChatBtn');
 const modelBadge = document.getElementById('modelBadge');
 
 let chatHistory = [];
+let currentController = null;
+
+stopBtn.addEventListener('click', () => {
+    if (currentController) {
+        currentController.abort();
+    }
+});
 
 // Auto-resize textarea
 userInput.addEventListener('input', function() {
@@ -83,12 +91,17 @@ function sendMessage() {
 async function generateAIResponse() {
     const botContentDiv = appendMessage('bot', '<span class="typing">...</span>');
     let botResponse = '';
+    
+    currentController = new AbortController();
+    sendBtn.style.display = 'none';
+    stopBtn.style.display = 'flex';
 
     try {
         const response = await fetch('/api/chat', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ messages: chatHistory })
+            body: JSON.stringify({ messages: chatHistory }),
+            signal: currentController.signal
         });
 
         if (!response.ok) {
@@ -154,8 +167,17 @@ async function generateAIResponse() {
         }
 
     } catch (error) {
-        botContentDiv.innerHTML = `<p style="color: #ef4444;">Error: Could not reach the local AI engine. Ensure Ollama is running and the backend is connected.</p>`;
-        console.error(error);
+        if (error.name === 'AbortError') {
+            botContentDiv.innerHTML += `<br/><br/><span style="color:#ef4444; font-size: 0.85em;">[Generation stopped]</span>`;
+            chatHistory.push({ role: 'assistant', content: botResponse });
+        } else {
+            botContentDiv.innerHTML = `<p style="color: #ef4444;">Error: Could not reach the local AI engine. Ensure Ollama is running and the backend is connected.</p>`;
+            console.error(error);
+        }
+    } finally {
+        sendBtn.style.display = 'flex';
+        stopBtn.style.display = 'none';
+        currentController = null;
     }
 }
 
